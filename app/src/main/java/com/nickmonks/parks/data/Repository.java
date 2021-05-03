@@ -28,10 +28,13 @@ public class Repository {
 
     static List<Park> parkList = new ArrayList<>();
 
-    public static void getParks(final AsyncResponse callback){
+    public static void getParks(final AsyncResponse callback, String stateCode){
+
+        String url = Util.getParksUrl(stateCode);
+        Log.d("url", "onClick: " + url);
 
         JsonObjectRequest jsonObjectRequest =
-                new JsonObjectRequest(Request.Method.GET, Util.PARKS_URL, null, response -> {
+                new JsonObjectRequest(Request.Method.GET, url, null, response -> {
                 // Response contains the payload of the parks fetched
                     try {
                         // we will get the JSON array of data
